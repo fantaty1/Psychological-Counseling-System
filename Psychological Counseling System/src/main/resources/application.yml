@@ -1,0 +1,44 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: Psychological Counseling System
+  datasource:
+    url: jdbc:mysql://localhost:3306/psychological_counseling?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    username: root
+    password: 1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 100MB
+
+# 文件上传配置
+file:
+  upload-dir: uploads
+
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.cqust.psychologicalcounseling.entity
+
+# 配置事务管理日志级别
+logging:
+  level:
+    org.springframework.jdbc.support.JdbcTransactionManager: debug
+    com.cqust.psychologicalcounseling: debug
+
+# JWT配置
+jwt:
+  secret: PsychologicalCounselingSystemSecretKey2025VeryLongAndSecure
+  expiration: 86400000
+
+# AI配置 (阿里云通义千问)
+ai:
+  api-key: sk-84427029c5ca47ebaaabb368cabbcf0e
+  base-url: https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions
+  model: qwen-turbo
+
